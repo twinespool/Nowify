@@ -46,12 +46,12 @@
   }
   &__album {
     font-weight: var(--font-weight-heading);
-    font-size: 1.1em;
+    font-size: 1.2em;
     margin-top: var(--spacing-m);
     opacity: 0.8;
   }
   &__release {
-    font-size: 0.9em;
+    font-size: 1.2em;
     margin-top: var(--spacing-s);
     opacity: 0.7;
   }
@@ -70,7 +70,7 @@
 @media only screen and (min-width: 767px) {
     flex-flow: row nowrap;
     padding: var(--spacing-m);
-    align-items: stretch;
+    align-items: center;
     &__cover {
       flex: 0 0 auto;
     }
@@ -78,6 +78,9 @@
       flex: 1 1 auto;
       text-align: left;
       max-width: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 }
