@@ -5,7 +5,7 @@
  *
  */
 .now-playing {
-  background-color: var(--colour-background-now-playing);
+  background-color: #1a1a1a !important;
   color: var(--color-text-primary);
   display: flex;
   flex-flow: column nowrap;
@@ -41,6 +41,18 @@
 
   &__artists {
     opacity: 0.8;
+  }
+  &__album {
+    font-weight: var(--font-weight-heading);
+    font-size: 0.85em;
+    margin-top: var(--spacing-m);
+    opacity: 0.7;
+    font-style: italic;
+  }
+  &__release {
+    font-size: 0.75em;
+    margin-top: var(--spacing-s);
+    opacity: 0.5;
   }
 
   &--active {
