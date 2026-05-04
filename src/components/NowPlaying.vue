@@ -12,9 +12,11 @@
           class="now-playing__image"
         />
       </div>
-      <div class="now-playing__details">
+    <div class="now-playing__details">
         <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
+        <h3 class="now-playing__album" v-text="player.trackAlbum.title"></h3>
+        <p class="now-playing__release" v-text="player.trackAlbum.releaseDate"></p>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
@@ -166,6 +168,25 @@ export default {
     },
 
     /**
+     * Format a Spotify release date according to its precision.
+     * @param {String} date - e.g. "2017-03-15", "2017-03", or "2017"
+     * @param {String} precision - "day", "month", or "year"
+     * @return {String}
+     */
+    formatReleaseDate(date, precision) {
+      if (!date) return ''
+      if (precision === 'year') return date
+      if (precision === 'month') {
+        const [year, month] = date.split('-')
+        const monthName = new Date(year, parseInt(month) - 1).toLocaleString('en-US', { month: 'long' })
+        return `${monthName} ${year}`
+      }
+      // precision === 'day'
+      const d = new Date(date)
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    },
+
+    /**
      * Poll Spotify for data.
      */
     setDataInterval() {
@@ -232,7 +253,11 @@ export default {
         trackId: this.playerResponse.item.id,
         trackAlbum: {
           title: this.playerResponse.item.album.name,
-          image: this.playerResponse.item.album.images[0].url
+          image: this.playerResponse.item.album.images[0].url,
+          releaseDate: this.formatReleaseDate(
+            this.playerResponse.item.album.release_date,
+            this.playerResponse.item.album.release_date_precision
+          )
         }
       }
     },
