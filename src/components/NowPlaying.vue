@@ -193,7 +193,7 @@ export default {
       clearInterval(this.pollPlaying)
       this.pollPlaying = setInterval(() => {
         this.getNowPlaying()
-      }, 2500)
+      }, 10000)
     },
 
     /**
