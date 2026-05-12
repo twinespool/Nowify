@@ -19,7 +19,7 @@ Preview:
 Nowify needs a webserver to run. The quickest way to get up and running is to use a Jamstack platform like Netlify or GitHub Pages.
 
 * Fork this repository
-* Connect your repo to your Jamstack platform
+* Connect your repo to your Jamstack platform 
 * Add your Spotify Client ID and Client Secret to the platforms environment variables
 * Deploy!
 
